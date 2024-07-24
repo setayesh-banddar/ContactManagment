@@ -5,7 +5,7 @@ export const ContactContext = createContext();
 
 export const ContactProvider = ({ children }) => {
     const [contacts, setContacts] = useState(data);
-    const[editMode , setEdit]=useState(false)
+    const[editMode , setEditMode]=useState(null)
   
     const createNew = (newContact) => {
       setContacts([...contacts, newContact]);

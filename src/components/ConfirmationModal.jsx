@@ -20,12 +20,17 @@ import {
 } from "@nextui-org/react";
 
 import { twMerge } from "tailwind-merge";
+import { toast } from "react-toastify";
 
 
 const ConfirmationModal = ({ handleConfirm, projectName, children, color, varient, className }) => {
 
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
+  const notify = () => toast("مخاطب حذف شد" , {
+    className: " bg-red-400 text-white  font-semibold",
+    bodyClassName: "grow-font-size",
+    progressClassName: "fancy-progress-bar",
+  });
 
   return (
 
@@ -37,7 +42,7 @@ const ConfirmationModal = ({ handleConfirm, projectName, children, color, varien
 
           className && className,
 
-          "flex items-start justify-start w-full gap-2"
+          ""
 
         )}
 
@@ -73,41 +78,42 @@ const ConfirmationModal = ({ handleConfirm, projectName, children, color, varien
 
               <ModalHeader className="flex flex-col gap-1">
 
-                Are you sure ?
+               
 
               </ModalHeader>
 
               <ModalBody>
 
-                Are you sure do you want delete
+                آیا مطمئن به حذف مخاطب مورد نظر هستید؟
 
-                {projectName && " ${projectName} " } project ?
+                {projectName && " ${projectName} " } 
 
               </ModalBody>
 
               <ModalFooter>
 
-                <Button color="default" variant="light" onPress={onClose}>
-
-                  No
-
-                </Button>
-
-                <Button
+                
+              <Button
 
                   color="primary"
 
                   onPress={() => {
 
                     handleConfirm();
-
+                    notify();
                     onClose();
 
                   }}
 
-                >
+                  >
 
-                  Yes
+                  بله
+
+                  </Button>
+
+                <Button color="default" variant="light" onPress={onClose}>
+
+                 خیر
 
                 </Button>
 
@@ -120,6 +126,7 @@ const ConfirmationModal = ({ handleConfirm, projectName, children, color, varien
         </ModalContent>
 
       </Modal>
+
 
     </>
 
